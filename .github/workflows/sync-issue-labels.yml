@@ -1,0 +1,48 @@
+name: Sync Issue Labels to PR
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+permissions:
+    contents: read 
+    issues: write
+    pull-requests: write
+
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get linked issue
+        id: get_issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || "";
+            const issueNumberMatch = body.match(/(?:Fixes|Closes|Resolves):?\s+#(\d+)/i);
+
+
+            
+            if (!issueNumberMatch) {
+              console.log("No linked issue found.");
+              return;
+            }
+
+            const issueNumber = issueNumberMatch[1];
+
+            const { data: issue } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            const labels = issue.labels.map(label => label.name);
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: labels,
+            });
