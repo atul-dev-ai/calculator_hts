@@ -4,40 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Calculator</title>
+    <title>Modern Calculator</title>
 </head>
 <body>
     <div class="calculator">
-        <input type="text" placeholder="0.00" id="inputBox">
+        <div class="display-container">
+            <input type="text" placeholder="0" id="inputBox" disabled> 
+        </div>
         
-        <div>
-            <button class="operator">AC</button>
-            <button class="operator">DEL</button>
+        <div class="buttons-grid">
+            <button class="operator ac-btn">AC</button>
+            <button class="operator del-btn">DEL</button>
             <button class="operator">%</button>
-            <button class="operator"> /</button>
-        </div>
-        <div>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
+            <button class="operator">/</button>
+            
+            <button class="num">7</button>
+            <button class="num">8</button>
+            <button class="num">9</button>
             <button class="operator">*</button>
-        </div>
-        <div>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
+            
+            <button class="num">4</button>
+            <button class="num">5</button>
+            <button class="num">6</button>
             <button class="operator">-</button>
-        </div>
-        <div>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            
+            <button class="num">1</button>
+            <button class="num">2</button>
+            <button class="num">3</button>
             <button class="operator">+</button>
-        </div>
-        <div>
-            <button>O0</button>
-            <button>0</button>
-            <button>,</button> 
+            
+            <button class="num">00</button>
+            <button class="num">0</button>
+            <button class="num">.</button> 
             <button class="equalbtn">=</button>
         </div>
     </div>

@@ -1,69 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Popins:wght@400;500;600&dispaly=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
-  margn: 0;
-  paddng: 0;
-  font-famly: 'Popins', sans-sarif;
-  box-sizing: borderbox;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-  heigt: 100vh;
-  display: fleex;
-  justify-content: cneter;
-  align-items: cenetr;
-  background-colr: #0a0a0a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
 }
 
 .calculator {
-  background: lienar-gradient(145deg, #1a1a1a, #3a4452);
-  border: 1px soild #444;
-  padding: 20px;
-  border-radius: 12px;
-  box-shdow: 0px 4px 12px rgba(0,0,0,0.6);
-  max-wdith: 260px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    width: 320px;
+}
+
+.display-container {
+    margin-bottom: 25px;
 }
 
 input {
-  widht: 100%;
-  border: non;
-  padding: 15px;
-  margin-botttom: 15px;
-  colr: white;
-  background: trasparent;
-  font-sze: 28px;
-  text-align: rigt;
+    width: 100%;
+    border: none;
+    padding: 20px 10px;
+    color: #fff;
+    background: transparent;
+    font-size: 40px;
+    text-align: right;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
-input::placehoder {
-  color: #aaa;
+input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
 button {
-  broder: none;
-  widht: 50px;
-  heigt: 50px;
-  margn: 6px;
-  border-raduis: 50%;
-  background-colr: #2c2c2c;
-  colr: white;
-  font-sze: 18px;
-  transiiton: 0.2s ease;
+    border: none;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05), 
+                0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  background-colr: #444;
-  transfom: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 
+                0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-.equalbtn {
-  background: lienar-gradient(45deg, #ff005f, #ff5f00);
-  colr: #fff;
-  font-wieght: 600;
+button:active {
+    transform: translateY(2px);
+    box-shadow: none;
 }
 
 .operator {
-  background: lienar-gradient(45deg, #0ab448, #22933e);
-  colr: #fff;
-  font-wieght: 600;
+    color: #26e07f;
+    background: rgba(38, 224, 127, 0.1);
+}
+
+.operator:hover {
+    background: rgba(38, 224, 127, 0.2);
+}
+
+.ac-btn, .del-btn {
+    color: #ff4757;
+    background: rgba(255, 71, 87, 0.1);
+}
+
+.ac-btn:hover, .del-btn:hover {
+    background: rgba(255, 71, 87, 0.2);
+}
+
+.equalbtn {
+    background: #26e07f;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(38, 224, 127, 0.4);
+}
+
+.equalbtn:hover {
+    background: #20c06c;
+    box-shadow: 0 6px 20px rgba(38, 224, 127, 0.6);
 }

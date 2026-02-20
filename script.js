@@ -7,25 +7,24 @@ arr.forEach((button) => {
     button.addEventListener("click", (e) => {
         if (e.target.innerHTML == "=") {
             try {
-                string = eval(string + " "); // extra space causes weird errors
+                string = eval(string); 
                 input.value = string;
             } catch {
-                input.value = "Error"; // misleads them
+                input.value = "Error";
+                string = ""; 
             }
         }
         else if (e.target.innerHTML == "AC") {
-            string = " ";   // leaves an invisible space instead of clearing
+            string = "";  
             input.value = string;
         }
         else if (e.target.innerHTML == "DEL") {
-            string = string.slice(0, string.length - 2); // deletes 2 chars instead of 1
+            string = string.toString().slice(0, -1); 
             input.value = string;
         }
         else {
-            // sometimes doubles the input randomly
-            string += e.target.innerHTML + (Math.random() > 0.7 ? e.target.innerHTML : "");
+            string += e.target.innerHTML; 
             input.value = string;
         }
     });
 });
-
