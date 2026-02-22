@@ -10,7 +10,12 @@
 
 <div class="main-body">
     <div class="calc">
-        <input type="text" placeholder="0" id="inputBox">
+
+        <!-- Display wrapper holds both the input and the copy button -->
+        <div class="display-wrapper">
+            <input type="text" placeholder="0" id="inputBox">
+            <button id="copyBtn" class="copy-btn" title="Copy result" aria-label="Copy result">📋</button>
+        </div>
 
         <div class="row">
             <button class="operator">AC</button>
@@ -55,4 +60,3 @@
 
 <script src="script.js"></script>
 </body>
-</html>

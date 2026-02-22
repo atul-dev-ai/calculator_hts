@@ -12,16 +12,59 @@ body {
     text-align: center;
 }
 
+/* Wraps the input + copy button together */
+.display-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
 input {
     width: 90%;
     padding: 15px;
+    padding-right: 44px; /* make room for the copy button */
     font-size: 26px;
     text-align: right;
-    margin-bottom: 15px;
     background: transparent;
     color: white;
     border: 2px solid white;
     border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Copy button — sits inside the display border, top-left corner */
+.copy-btn {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    line-height: 28px;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, background 0.2s;
+
+    /* Hidden by default — shown only when a result exists */
+    display: none;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+}
+
+/* "Copied!" state */
+.copy-btn.copied {
+    font-size: 10px;
+    opacity: 1;
+    color: #0ab448;
 }
 
 button {
