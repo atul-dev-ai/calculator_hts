@@ -23,6 +23,7 @@ arr.forEach((button) => {
             string += e.target.innerHTML;
             input.value = string;
         }
+        input.scrollLeft = input.scrollWidth;
     });
 });
 // Theme Toggle
@@ -58,6 +59,7 @@ function calculateResult(){
         string = input.value.trim();   // sync with display
         string = eval(string);
         input.value = string;
+        input.scrollLeft = input.scrollWidth;
         string = "";
     }
     catch (err) {
