@@ -59,3 +59,42 @@ button:hover {
   color: #fff;
   font-weight: 600;
 }
+:root {
+    --bg-color: #ffffff;
+    --calc-bg: #f3f3f3;
+    --btn-bg: #e0e0e0;
+    --operator-bg: #4CAF50;
+    --text-color: #000000;
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: 0.3s ease;
+}
+.calc {
+    background-color: var(--calc-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+button {
+    background-color: var(--btn-bg);
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    font-size: 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+button:hover {
+    transform: scale(1.05);
+}
+.operator, .equalbtn {
+    background-color: var(--operator-bg);
+    color: white;
+}
+.theme-controls {
+    text-align: center;
+    margin: 20px;
+}
