@@ -3,51 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
+    <link rel = "icon" href="web_Icon/favicon.ico">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="theme-controls">
-    <button id="themeToggle">🌙 Dark Mode</button>
-    <input type="color" id="colorPicker" value="#4CAF50">
-</div>
-    <div class="main-body">
-    <div class = "calc">
-        <input type="text" placeholder="0.00" id="inputBox">
-       
-        <div class = "row">
+
+<div class="main-body">
+    <div class="calc">
+
+        <!-- Display wrapper holds both the input and the copy button -->
+        <div class="display-wrapper">
+            <input type="text" placeholder="0" id="inputBox">
+            <button id="copyBtn" class="copy-btn" title="Copy result" aria-label="Copy result">📋</button>
+        </div>
+
+        <div class="row">
             <button class="operator">AC</button>
             <button class="operator">DEL</button>
-            <button class="operator">%</button>
-            <button class="operator">/</button>
+            <button class="operator">√</button>
+            <button class="operator">!</button>
         </div>
-        <div class = "row">
+
+        <div class="row">
             <button>7</button>
             <button>8</button>
             <button>9</button>
-            <button class="operator">*</button>
+            <button class="operator">/</button>
         </div>
-        <div class = "row">
+
+        <div class="row">
             <button>4</button>
             <button>5</button>
             <button>6</button>
-            <button class="operator">-</button>
+            <button class="operator">*</button>
         </div>
-        <div class =  "row">
+
+        <div class="row">
             <button>1</button>
             <button>2</button>
             <button>3</button>
-            <button class="operator">+</button>
+            <button class="operator">-</button>
         </div>
-        <div class = "row">
+
+        <div class="row">
             <button>00</button>
             <button>0</button>
             <button>.</button>
+            <button class="operator">+</button>
+        </div>
+
+        <div class="row">
             <button class="equalbtn">=</button>
         </div>
     </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+</div>
 
+<script src="script.js"></script>
+</body>
