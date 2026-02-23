@@ -1,100 +1,94 @@
-.calc{
-    width: 350px;
-    height: 450px;
-    background: rgb(0, 0, 0);
-    margin-left: 40%;
-    margin-top: 45px;
-    padding: 15px;
-    text-align: center;
-}
-
-
-input {
-  width: 80%;
-  border-color:white;
-  padding: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: white;
-  background: transparent;
-  font-size: 28px;
-  text-align: right;
-}
-
-
-input::placeholder {
-  color: #aaa;
-}
-
-
-button {
-  border: none;
-  width: 60px;
-  height: 60px;
-  margin: 6px;
-  border-radius: 45%;
-  background-color: #2c2c2c;
-  color: white;
-  font-size: 18px;
-  transition: 0.2s ease;
-  cursor: pointer;
-}
-
-
-button:hover {
-  background-color: #5f5e5e;
-  transform: scale(1.05);
-}
-
-
-.equalbtn {
-  background: linear-gradient(45deg, #ff005f, #ff5f00);
-  color: #fff;
-  font-weight: 600;
-}
-
-
-.operator {
-  background: linear-gradient(45deg, #0ab448, #22933e);
-  color: #fff;
-  font-weight: 600;
-}
-:root {
-    --bg-color: #ffffff;
-    --calc-bg: #f3f3f3;
-    --btn-bg: #e0e0e0;
-    --operator-bg: #4CAF50;
-    --text-color: #000000;
-}
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: 0.3s ease;
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
 }
+
 .calc {
-    background-color: var(--calc-bg);
+    width: 350px;
+    background: black;
+    margin: 60px auto;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-button {
-    background-color: var(--btn-bg);
-    border: none;
-    padding: 10px;
-    margin: 10px;
-    font-size: 12px;
-    border-radius: 9px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-button:hover {
-    transform: scale(1.05);
-}
-.operator, .equalbtn {
-    background-color: var(--operator-bg);
-    color: white;
-}
-.theme-controls {
     text-align: center;
-    margin: 20px;
+}
+
+/* Wraps the input + copy button together */
+.display-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 90%;
+    padding: 15px;
+    padding-right: 44px; /* make room for the copy button */
+    font-size: 26px;
+    text-align: right;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Copy button — sits inside the display border, top-left corner */
+.copy-btn {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    line-height: 28px;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, background 0.2s;
+
+    /* Hidden by default — shown only when a result exists */
+    display: none;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+}
+
+/* "Copied!" state */
+.copy-btn.copied {
+    font-size: 10px;
+    opacity: 1;
+    color: #0ab448;
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    margin: 6px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50%;
+    background: #2c2c2c;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5f5e5e;
+}
+
+.operator {
+    background: linear-gradient(45deg, #0ab448, #22933e);
+    font-weight: bold;
+}
+
+.equalbtn {
+    background: linear-gradient(45deg, #ff005f, #ff5f00);
+    font-weight: bold;
 }
