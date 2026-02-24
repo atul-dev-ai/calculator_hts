@@ -115,6 +115,7 @@ buttons.forEach((button) => {
             input.value = string;
             hideCopyBtn(); // user is still typing, hide the button
         }
+        input.scrollLeft = input.scrollWidth;
     });
 });
 
