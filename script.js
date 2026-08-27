@@ -1,12 +1,15 @@
 let input = document.getElementById("inputBox");
-let buttons = document.querySelectorAll(".calc button");
+let buttons = document.querySelectorAll(".buttons-grid button");
 let string = "";
 
 const copyBtn = document.getElementById("copyBtn");
 let copyTimeout = null;
 
+// Initially hide copy button
+hideCopyBtn();
+
 function showCopyBtn() {
-    copyBtn.style.display = "block";
+    copyBtn.style.display = "flex";
 }
 
 function hideCopyBtn() {
@@ -18,7 +21,7 @@ function hideCopyBtn() {
 
 copyBtn.addEventListener("click", () => {
     const result = input.value;
-    if (!result || result === "Error") return;
+    if (!result || result === "Error" || result === "Can't divide by zero") return;
 
     navigator.clipboard.writeText(result).then(() => {
         copyBtn.textContent = "Copied!";
@@ -29,12 +32,10 @@ copyBtn.addEventListener("click", () => {
             copyBtn.classList.remove("copied");
         }, 2000);
     }).catch(() => {
-        // Fallback for browsers where clipboard write fails
         input.select();
         document.execCommand("copy");
     });
 });
-// =====================================================
 
 // Factorial function
 function factorial(n) {
@@ -52,30 +53,16 @@ buttons.forEach((button) => {
 
         if (value === "=") {
             try {
-
-                string = eval(string); 
-                input.value = string;
-            } catch {
-                input.value = "Error";
-                string = ""; 
-            }
-        }
-        else if (e.target.innerHTML == "AC") {
-            string = "";  
-            input.value = string;
-        }
-        else if (e.target.innerHTML == "DEL") {
-            string = string.toString().slice(0, -1); 
-
-                string = eval(string);
-                // eval("5/0") returns Infinity — treat it as an error
+                if (string === "") return;
+                let evalString = string.replace(/×/g, '*').replace(/÷/g, '/');
+                string = eval(evalString);
                 if (!isFinite(string)) {
                     input.value = "Can't divide by zero";
                     string = "";
                     hideCopyBtn();
                 } else {
                     input.value = string;
-                    string = "";
+                    string = string.toString();
                     showCopyBtn();
                 }
             } catch {
@@ -84,44 +71,55 @@ buttons.forEach((button) => {
                 hideCopyBtn();
             }
         }
-
         else if (value === "AC") {
             string = "";
             input.value = "";
-            hideCopyBtn(); // clear resets everything
+            hideCopyBtn();
         }
-
         else if (value === "DEL") {
-            string = string.slice(0, -1);
+            string = string.toString().slice(0, -1);
             input.value = string;
             if (!string) hideCopyBtn();
+            else hideCopyBtn(); // result is no longer final
         }
-
         else if (value === "√") {
-            let num = parseFloat(input.value);
-            if (num < 0 || isNaN(num)) {
+            try {
+                let evalString = string.replace(/×/g, '*').replace(/÷/g, '/');
+                let num = eval(evalString);
+                if (num < 0 || isNaN(num)) {
+                    input.value = "Error";
+                    string = "";
+                    hideCopyBtn();
+                } else {
+                    string = Math.sqrt(num).toString();
+                    input.value = string;
+                    showCopyBtn();
+                }
+            } catch {
                 input.value = "Error";
-                hideCopyBtn();
-            } else {
-                input.value = Math.sqrt(num);
                 string = "";
-                showCopyBtn(); // result is ready
+                hideCopyBtn();
             }
         }
-
         else if (value === "!") {
-            let num = parseFloat(input.value);
-            let result = factorial(num);
-            input.value = result;
-            string = "";
-            if (result !== "Error") showCopyBtn(); // result is ready
-            else hideCopyBtn();
+            try {
+                let evalString = string.replace(/×/g, '*').replace(/÷/g, '/');
+                let num = eval(evalString);
+                let result = factorial(parseFloat(num));
+                input.value = result;
+                string = result !== "Error" ? result.toString() : "";
+                if (result !== "Error") showCopyBtn();
+                else hideCopyBtn();
+            } catch {
+                input.value = "Error";
+                string = "";
+                hideCopyBtn();
+            }
         }
-
         else {
-
+            string += value;
             input.value = string;
-            hideCopyBtn(); // user is still typing, hide the button
+            hideCopyBtn(); 
         }
         input.scrollLeft = input.scrollWidth;
     });
